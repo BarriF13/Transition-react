@@ -15,7 +15,7 @@ class TransitionComp extends Component{
         return(
             <div>
                
-                <Transition
+                {/* <Transition
                     in={this.state.show}
                     timeout={2000}
 
@@ -30,6 +30,30 @@ class TransitionComp extends Component{
                           opacity: state === 'exited' || state === 'exiting'? 0 : 1
                        }}>
                            {state}
+                       </div>
+                       }
+                </Transition> */}
+                   <Transition
+                    in={this.state.show}
+                    timeout={{
+                        enter: 2000,
+                        exit:50
+                    }}
+
+                   enter={true}
+                   exit={true}
+
+                   onEnter={(node)=>{
+                       console.log('Enter')
+                   }}
+                   onExit={(node)=>{
+                    console.log('Exit')
+                   }}
+
+                    >
+                       { state => 
+                       <div className={`square square-${state}`}>
+                           {`square square-${state}`}
                        </div>
                        }
                 </Transition>
