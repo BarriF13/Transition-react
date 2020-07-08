@@ -9,7 +9,7 @@ const UserTemplate =(props)=> {
     </div>
   )
 };
-UserTemplate.PropTypes = {
+UserTemplate.propTypes = {
   name:PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number ,
@@ -22,7 +22,12 @@ UserTemplate.PropTypes = {
   spanish:PropTypes.bool,
  message:PropTypes.func,
  car:PropTypes.object,
- mother: PropTypes.string.isRequired,
+ mother: function(props, propName, componentName){
+  // 
+  if(props[propName] !== 'Cyrus'){
+    return new Error(`The name ${props[propName]} is not correct. should be Barri `)
+  }
+ }
  
 }
 
