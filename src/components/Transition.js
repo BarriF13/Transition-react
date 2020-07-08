@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Transition from 'react-transition-group/Transition';
 import '../css/App.css';
 
 class TransitionComp extends Component{
@@ -13,16 +14,27 @@ class TransitionComp extends Component{
     render(){
         return(
             <div>
-                {this.state.show?<div style={{
-                    background: 'red',
-                    height:'100px'
-                }}>
-
-                </div> : null}
-                <div className="showDiv" 
-                onClick={this.showDiv}>
-                    show or hide
-                </div>
+               
+                <Transition
+                    in={this.state.show}
+                    timeout={2000}
+                    >
+                       { state => 
+                       <div style={{
+                           background:'blue',
+                           height: '100px',
+                          transition: 'all 2s',
+                          opacity: state === 'exited' || state === 'exiting'? 0 : 1
+                       }}>
+                           {state}
+                       </div>
+                       }
+                </Transition>
+                    <div className="showDiv" 
+                    onClick={this.showDiv}>
+                        show or hide
+                    </div>
+               
             </div>
 
         )
